@@ -23,6 +23,16 @@ fastify.register(require('fastify-static'), {
 // Please add a schema to validate the following properties from query string:
 //  - name
 //  - course (required)
+
+const queryStringSchema = {
+  name: {
+    type: String
+  },
+  course:{
+    type: String,
+    required: [true, 'Is required']
+  }
+}
 fastify.get('/', (request, reply) => {
   const name = request.query.name || 'Anonymous'
   const course = request.query.course
